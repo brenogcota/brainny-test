@@ -1,0 +1,49 @@
+{
+   "name": "app",
+   "version": "0.0.1",
+   "description": "project manager api.",
+   "devDependencies": {
+      "@types/node": "^8.10.66",
+      "nodemon": "^2.0.14",
+      "ts-node": "3.3.0",
+      "typescript": "3.3.3333"
+   },
+   "dependencies": {
+      "@types/cors": "^2.8.12",
+      "@types/express": "^4.17.13",
+      "@types/helmet": "^4.0.0",
+      "@types/knex": "^0.16.1",
+      "@types/morgan": "^1.9.3",
+      "@types/pino": "^6.3.12",
+      "bcrypt": "^5.0.1",
+      "cors": "^2.8.5",
+      "dotenv": "^10.0.0",
+      "ejs": "^3.1.6",
+      "express": "^4.17.1",
+      "express-rate-limit": "^5.5.0",
+      "express-slow-down": "^1.4.0",
+      "express-validator": "^6.13.0",
+      "helmet": "^4.6.0",
+      "jsonwebtoken": "^8.5.1",
+      "knex": "^0.95.14",
+      "morgan": "^1.10.0",
+      "multer": "^1.4.3",
+      "nodemailer": "^6.7.0",
+      "pg": "^8.7.1",
+      "pino": "^7.1.0",
+      "pino-http": "^6.0.0",
+      "reflect-metadata": "^0.1.10",
+      "socket.io": "^4.4.0",
+      "typeorm": "0.2.37",
+      "uuid": "^8.3.2"
+   },
+   "scripts": {
+      "build": "tsc",
+      "start": "NODE_ENV=production ts-node build/bin/www/index.js",
+      "dev": "NODE_ENV=development nodemon --watch 'src/' --exec 'ts-node src/bin/www/index.ts' -e ts",
+      "migration:run": "NODE_ENV=production typeorm migration:run",
+      "migration:revert": "NODE_ENV=production typeorm migration:revert",
+      "migration:create": "NODE_ENV=development typeorm migration:create -n",
+      "migration:generate": "NODE_ENV=development typeorm migration:generate -n"
+   }
+}

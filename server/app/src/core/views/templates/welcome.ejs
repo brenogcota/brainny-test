@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/head'); %>
+        <meta title="Welcome" />
+    </head>
+
+    <body style="background: white; margin: 0; padding: 0; max-width: 700px; margin: 10px auto; font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;">
+
+        <%- include('../partials/header'); %>
+
+            <main style="padding: 10px;">
+                <h1 style="margin: 10px; color: #333;">Welcome, 
+                    <%if (name) { %>
+                        <span><%= name %></span>
+                    <% } else { %> 
+                        <span>bro.</span>
+                    <% } %>
+                </h1>
+
+                <p style="color: #666; font-size: 16px;">Welcome to your journey in agile development with our tool. This email is an automatic confirmation email for your
+                    account, and you don't need to reply.
+                    Now it's just a little while away from us, please click the button below to confirm your account or
+                    ignore it if you don't want to follow.
+                </p>
+
+                <br/>
+                <a href="<%= verify_token_url %>" style="text-decoration: none; margin: 16px 0; padding: 6px 12px; outline: none; border: none; color: #fff; font-size: 16px; border-radius: 2px; background: #62BD69; cursor: pointer;">
+                    Confirm e-mail
+                </a>
+
+            </main>
+
+            <%- include('../partials/footer'); %>
+    </body>
+
+</html>

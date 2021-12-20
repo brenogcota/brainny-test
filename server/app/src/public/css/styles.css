@@ -1,0 +1,96 @@
+:root {
+    --primary: #c285e0;
+    --primaryDarken: #9c65b8;
+    --secondary: #7277d4;
+    --secondaryDarken: #565a8a;
+    --black: #1B1E23;
+    --grayLight: #E3E3E3;
+    --gray: #44546A;
+    --grayDark: #ccc;
+    --darken: #2D3D52;
+    --darkenLight: #AAA;
+    --white: #FFF;
+    --whiteDarken: #fafafa;
+    --shadow: #d5d5d5;
+    --red: #CC1100;
+    --crimson: #DC143C;
+    --green: #62BD69;
+    --greenDarken: #30694B;
+    --orange: #FF781F;
+    --orangeLighten: #FF9D5C;
+    --orangeLight: #FFAF7A;
+    --yellow: #FEF24E;
+    --blue: #3895D3;
+    --blueDarken: #1261A0;
+    --blueLight: #92DFF3;
+    --blueLighten: rgba(59, 130, 246, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.pms__template.container {
+    color: #1f1f1f;
+    background: #FFF;
+    font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.linear-gradient {
+    background: linear-gradient(325deg, rgba(114,119,212,1) 9%, rgba(194,133,224,1) 62%);
+}
+
+header.pms__template {
+    padding: 10px;
+}
+
+header .header_logo {
+    font-weight: 800;
+    color: #FFF;
+}
+
+main.pms__template {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+footer.pms__template {
+    text-align: center;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+}
+
+footer.pms__template .contribute, footer .info {
+    font-size: 14px;
+}
+
+footer.pms__template .contribute {
+    text-decoration: none;
+    color: var(--primary);
+    cursor: pointer;
+}
+
+.pms__template .title {
+    color: #333;
+}
+
+.pms__template .text {
+    color: #666;
+}
+
+.pms__template .button {
+    margin: 16px 0;
+    padding: 6px 12px;
+    outline: none;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.pms__template .primary-button {
+    background: var(--green);
+}

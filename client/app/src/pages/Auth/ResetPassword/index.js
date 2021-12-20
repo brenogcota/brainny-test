@@ -4,7 +4,7 @@ import { Input, Form as AntForm } from 'antd';
 import { LockOutlined, MailOutlined, UserOutlined } from '@ant-design/icons';
 
 import Form from '../components/Form';
-import Footer from '../components/Footer';
+import Background from '../components/Background';
 import Button from '../components/Button';
 
 import { signup, updatePassword } from '../../../services/auth';
@@ -59,7 +59,7 @@ function ResetPassword() {
                 </Button>
             </Form>
 
-            <Footer />
+            <Background />
             
         </Container>
     );

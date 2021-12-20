@@ -62,7 +62,7 @@ function Notification() {
                                                         <p className="mb-0 text-xs"><strong className="text-sm">{subscriber.name}</strong> {subscriber.email} - {moment(created_at).format(dateFormat)}</p>
                                                         <span>{message}</span>
 
-                                                        <p><a style={{ color: primary, fontWeight: 'bold' }} href={`/boards/${project_id}/task/${task_id}`}>{locale['see-task']}</a></p>
+                                                        <p><a style={{ color: primary, fontWeight: 'bold' }} href={`//${project_id}/task/${task_id}`}>{locale['see-task']}</a></p>
                                                     </div>
                                                 </div>
                             })

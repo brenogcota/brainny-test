@@ -4,7 +4,7 @@ import { Input, Form as AntForm } from 'antd';
 import { LockOutlined, MailOutlined, UserOutlined } from '@ant-design/icons';
 
 import Form from '../components/Form';
-import Footer from '../components/Footer';
+import Background from '../components/Background';
 import Button from '../components/Button';
 
 import { signup } from '../../../services/auth';
@@ -60,9 +60,9 @@ function SignUp() {
                 </Button>
             </Form>
 
-            <p className="text-white text-lg text-center mt-8">{locale['already-have-an-account']} <Link to="/login">{locale['enter']}</Link></p>
+            <p className="text-gray-400 text-lg text-center mt-8">{locale['already-have-an-account']} <Link to="/login">{locale['enter']}</Link></p>
 
-            <Footer />
+            <Background />
             
         </Container>
     );

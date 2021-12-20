@@ -41,7 +41,7 @@ function Settings() {
     return (
         <Wrapper>
             <Container>
-                <Link to="/boards"> <LeftOutlined style={{ fontSize: '28px', color: '#666', margin: '10px 0' }} /> </Link><br/>
+                <Link to="/"> <LeftOutlined style={{ fontSize: '28px', color: '#666', margin: '10px 0' }} /> </Link><br/>
                 <h1 className="text-4xl text-gray-600">{locale['settings']}</h1>
 
                 <div className="my-3 p-3 bg-gray-100 rounded">
@@ -79,7 +79,6 @@ function Settings() {
                     <h2 className="text-xl text-gray-500">{locale['preferences']}</h2>
 
                     <p className="text-lg text-gray-600 my-2"><Switch disabled /> Dark mode</p>
-                    <p className="text-lg text-gray-600 my-2"><Switch disabled defaultChecked /> List</p>
                 </div>
 
             </Container>

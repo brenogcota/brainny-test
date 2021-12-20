@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const NotificationContainer = styled.div`
   position: fixed;
   top: 0;
-  left: 50px;
+  left: 100px;
   z-index: 1;
   background: #F9F9F9;
   padding: 20px 10px 0;

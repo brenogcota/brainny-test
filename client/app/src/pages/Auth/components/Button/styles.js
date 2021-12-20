@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-const gradient = 'linear-gradient(325deg, rgba(114,119,212,1) 9%, rgba(194,133,224,1) 62%)';
+import { colors } from '../../../../shared/constants';
+
+const { primary, primaryDarken} = colors;
+
+const gradient = `linear-gradient(325deg, ${primaryDarken} 9%, ${primary} 62%)`;
 
 export const Container = styled.button`
   background: ${({ background }) => background ? background : gradient };

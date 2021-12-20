@@ -4,7 +4,7 @@ import { Input, Form as AntForm } from 'antd';
 import { LockOutlined, MailOutlined } from '@ant-design/icons';
 
 import Form from '../components/Form';
-import Footer from '../components/Footer';
+import Background from '../components/Background';
 import Button from '../components/Button';
 
 
@@ -38,7 +38,7 @@ function SignIn() {
     }
 
     if(auth.isAuthenticated) {
-        return <Redirect to="/boards" />
+        return <Redirect to="/" />
     }
 
     return (
@@ -67,10 +67,6 @@ function SignIn() {
                         <span className="text-white text-xl">{locale['enter']}</span>
                     </Button>
 
-                    <Button background="#000">
-                        <span className="text-white text-xl">GitHub</span>
-                    </Button>
-
                     <span onClick={() => setIsResetPassword(true)} className="text-gray-600 my-2 cursor-pointer text-sm">{locale['forgot-password']}</span>
                 </Form>
                 
@@ -94,8 +90,8 @@ function SignIn() {
                 </Form>
             }
 
-            <p className="text-white text-lg text-center mt-8">{locale['dont-have-an-account-yet']} <Link to="/signup">{locale['register']}</Link></p>
-            <Footer />
+            <p className="text-gray-400 text-lg text-center mt-8">{locale['dont-have-an-account-yet']} <Link to="/signup">{locale['register']}</Link></p>
+            <Background />
             
         </Container>
     );

@@ -5,7 +5,7 @@ import { Container } from './styles';
 function NotFound() {
     return (
         <Container>
-            <h1 className="text-6xl text-white">Parece que você<br/> se perdeu</h1>
+            <h1 className="text-6xl text-white">404<br/> not found</h1>
         </Container>
     );
 }

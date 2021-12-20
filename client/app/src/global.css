@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-    --primary: #c285e0;
-    --primaryDarken: #9c65b8;
+    --primary: #39E991;
+    --primaryDarken: #219653;
     --secondary: #7277d4;
     --secondaryDarken: #565a8a;
-    --black: #1B1E23;
+    --black: #333333;
     --grayLight: #E3E3E3;
     --gray: #44546A;
     --grayDark: #ccc;
@@ -31,7 +31,7 @@
 }
 
 .linear-gradient {
-    background: linear-gradient(325deg, rgba(114,119,212,1) 9%, rgba(194,133,224,1) 62%);
+    background: linear-gradient(325deg, #219653 9%, #39E991 62%);
 }
 
 .scrollbar-none::-webkit-scrollbar {

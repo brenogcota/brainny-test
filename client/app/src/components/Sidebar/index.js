@@ -1,28 +1,23 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { Divider } from 'antd';
+import { useHistory } from 'react-router-dom';
 import {
     DashboardOutlined,
-    SettingOutlined, 
-    PlusOutlined,
+    SettingOutlined,
     CloseOutlined,
     UsergroupAddOutlined,
-    LeftCircleOutlined
+    OrderedListOutlined
 } from '@ant-design/icons';
 
-import { useStateLayout } from '../../store/context/layout';
 import { useAuth } from '../../store/context/auth';
 
 import Label from '../Label';
-import CreateBoard from '../CreateBoard';
-import Avatar from '../Avatar';
 import Notification from '../Notification';
 
 import { Container, 
          SidebarItem, 
-         LeftContainer, 
-         RightContainer
+         LeftContainer
 } from './styles';
+
 import { colors } from '../../shared/constants';
 import { useStateLocale } from '../../store/context/locale';
 import Invite from '../Invite';
@@ -32,76 +27,16 @@ const styledIcon = {
     cursor: 'pointer'
 }
 
-function Sidebar({ projects }) {
+function Sidebar() {
     return (
         <div className="z-10">
             <Container>
                 <SideBarLeft />
-                <SideBarRight projects={projects} />
             </Container>
         </div>
     );
 }
 
-function SideBarRight({ projects }) {
-    const [isRightContainerOpen, setIsRightContainerOpen] = useState(true);
-    const [isVisible, setIsVisible] = useState(false);
-    const { _, dispatch } = useStateLayout();
-
-    const { locale } = useStateLocale()
-
-    const handleLayout = () => {
-        setIsRightContainerOpen(!isRightContainerOpen)
-        if(isRightContainerOpen) return dispatch({type: 'HANDLE_LAYOUT', payload: { gridTemplateColumns: '8% 92%' }})
-
-        dispatch({type: 'HANDLE_LAYOUT', payload: { gridTemplateColumns: '18% 82%' }})
-    }
-
-    return (
-        <RightContainer open={isRightContainerOpen} className="relative">
-            <LeftCircleOutlined
-                className="handleOpen absolute top-2 -right-3.5 text-xl bg-white p-1 rounded-full" 
-                onClick={handleLayout}
-            />
-
-           <h3 className="text-gray-600 text-lg">{locale['projects']}</h3>
-           <div className="projects-list overflow-auto max-h-48">
-            {
-              projects.length > 0 &&  
-                projects.map(board => {
-                    return <Link
-                                key={board.id}
-                                to={{
-                                    pathname: `/boards/${board.id}`
-                                }}
-                            >
-                                <div className="project-link flex items-center my-1 bg-gray-100 py-1 px-2">
-                                    <Avatar 
-                                        src={board.avatar_url && URL.createObjectURL(board.avatar_url)}
-                                        name={board.name}
-                                        background={board.avatar_color}
-                                        style={{ width: '2rem', height: '2rem'}} 
-                                    />
-                                    <span className="ml-2 text-gray-600">{board.name}</span>
-                                </div>
-                            </Link>
-                })
-            }
-            </div>
-
-            <Divider />
-
-            <Label
-                Icon={PlusOutlined}
-                title={`${locale['add-to']} ${locale['board']}`}
-                style={{ cursor: 'pointer', padding: '.3rem .5rem', margin: '.2rem 0' }}
-                onClick={() => setIsVisible(!isVisible)}
-            />
-            <CreateBoard isVisible={isVisible} setIsVisible={setIsVisible} />
-
-        </RightContainer>
-    );
-}
 
 function SideBarLeft() {
     const [activePage, setActivePage] = useState('Dashboard');
@@ -113,23 +48,39 @@ function SideBarLeft() {
         <>
             <LeftContainer>
                 <section className="flex flex-col relative items-center">
-                    <h1 className="logo w-full px-3 my-3">PM</h1>
+                    <div className="logo w-full my-3 pb-3">
+                        <svg width="60" height="61" viewBox="0 0 60 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M53.528 36.3779C50.2871 49.4692 37.1244 57.4307 24.1331 54.1685C11.1419 50.9064 3.23117 37.6532 6.4721 24.562C9.71303 11.4708 22.8757 3.50927 35.867 6.77142C48.8583 10.0336 56.769 23.2867 53.528 36.3779Z" stroke="#39E991"/>
+                            <path d="M55.649 32.3257C55.649 44.4685 45.8787 54.288 33.8562 54.288C21.8337 54.288 12.0634 44.4685 12.0634 32.3257C12.0634 20.1829 21.8337 10.3635 33.8562 10.3635C45.8787 10.3635 55.649 20.1829 55.649 32.3257Z" stroke="#39E991" stroke-width="4"/>
+                            <path d="M49.5566 34.4694C46.9742 44.901 36.486 51.2441 26.1356 48.645C15.7852 46.046 9.48152 35.4865 12.064 25.0549C14.6465 14.6233 25.1346 8.28029 35.4851 10.8793C45.8355 13.4784 52.1391 24.0379 49.5566 34.4694Z" stroke="#39E991"/>
+                        </svg>
+                    </div>
 
                     <SidebarItem onClick={ () => {
                         setActivePage('Dashboard')
-                        history.push('/')
+                        history.push('/dash')
                     }} active={activePage ==='Dashboard'} className="flex items-center my-3 cursor-pointer w-full px-3">
                         <DashboardOutlined style={styledIcon} />
                     </SidebarItem>
+
+                    <SidebarItem onClick={ () => {
+                        setActivePage('Times')
+                        history.push('/registers')
+                    }} active={activePage ==='Times'} className="flex items-center my-3 cursor-pointer w-full px-3">
+                        <OrderedListOutlined style={styledIcon} />
+                    </SidebarItem>
+
                     <SidebarItem onClick={ () => setActivePage('Notificações')} active={activePage ==='Notificações'} className="flex items-center my-3 cursor-pointer w-full px-3">
                         <Notification />
                     </SidebarItem>
+
                     <SidebarItem onClick={ () => {
                         setActivePage('Convidar')
                         setIsInviteVisible(true)
                     }} active={activePage ==='Convidar'} className="flex items-center my-3 cursor-pointer w-full px-3">
                         <UsergroupAddOutlined style={styledIcon}/>
                     </SidebarItem>
+
                     <SidebarItem onClick={ () => {
                         setActivePage('Configurações')
                         history.push("/settings")

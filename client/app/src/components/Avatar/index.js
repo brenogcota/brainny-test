@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import { Avatar as AntAvatar, Image } from 'antd';
-import { DEFAULT_SRC } from '../../shared/constants';
 
 import { Container, DefaultAvatar } from './styles';
 
@@ -23,7 +22,7 @@ function Avatar({ name, src, ...props}) {
 
   return (
     <Container>
-        <AntAvatar src={<Image src={src || DEFAULT_SRC } style={props.style} />} {...props} />
+        <AntAvatar src={<Image src={src} style={props.style} />} {...props} />
     </Container>
   );
 }

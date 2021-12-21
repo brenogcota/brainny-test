@@ -11,7 +11,7 @@ function ListItem({ register }) {
     return (
         <Container>
             <div className='flex items-center'>
-                <Avatar src={avatar_url} />
+                <Avatar src={avatar_url} name={name} />
                 <h4 className='mb-0 text-lg text-gray-600 ml-2'>{ name }</h4>
             </div>
 

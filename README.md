@@ -14,7 +14,7 @@
 
 ## Documentation
 
-For full documentation, visit [docs](https://github.com/brenogcota/brainny-test/docs)
+For full documentation, visit [docs](https://github.com/brenogcota/brainny-test/tree/master/docs)
 
 ## How it works
 

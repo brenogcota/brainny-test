@@ -10,9 +10,9 @@ export class BaseController {
     }
 
     all = async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const {order, ...query} = req.query;
-            const response = await this.service.all({ where: query, orderBy: order });
+       try {
+            const { order, page: skip, limit: take, ...query} = req.query;
+            const response = await this.service.all({ where: query, orderBy: order, take, skip });
             return res.status(200).json(sanitize(response));
         } catch (error) {
             req.errors = [...req.errors, error];
@@ -31,14 +31,14 @@ export class BaseController {
     }
 
     save = async (req: Request, res: Response, next: NextFunction) => {
-        try {
+        // try {
             const response = await this.service.save(req.body);
             return res.status(201).json(sanitize(response));
             
-        } catch (error) {
-            req.errors = [...req.errors, error];
-            next();
-        }
+        // } catch (error) {
+        //     req.errors = [...req.errors, error];
+        //     next();
+        // }
     }
 
     update = async (req: Request, res: Response, next: NextFunction) => {

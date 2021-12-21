@@ -52,3 +52,16 @@ export const emailVerified = async (req: Request, res: Response, next: NextFunct
     if(!users.email_verified_at) return res.status(403).json({ message: 'Please, verify email and try again.'});
     next();
 }
+
+export const performAction = (level: string, fields: string[]) => async (req: Request, res: Response, next: NextFunction) => {
+    const { user_id } = req
+    const [user] = await req.db('users').select('*').where({ id: user_id });
+
+    if(!user) return res.status(403).json({ error: 'You must be logged in to perform this action.' });
+
+    const canPerformAction = fields.every(field => user[level].includes(field))
+    if(!canPerformAction) return res.status(403).json({ message: 'you do not have permission to perform this action' })
+    
+    req.user = user
+    next()
+}

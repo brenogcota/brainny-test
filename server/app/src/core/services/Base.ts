@@ -10,7 +10,13 @@ export class BaseService {
 
     async all(options?) {
         const repository = new this.Repository();
-        return repository.all({ where: like(options.where), relations: options.relations, order: options.order });
+        return repository.all({ 
+                where: like(options.where), 
+                relations: options.relations, 
+                order: options.order, 
+                take: options.take || 10, 
+                skip: options.skip || 0 
+            });
     }
 
     async one(id?, options?) {

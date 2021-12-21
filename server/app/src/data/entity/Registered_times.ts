@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, JoinTable, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, ManyToOne, OneToMany, JoinColumn } from "typeorm";
+import { Notifications } from "./Notifications";
 import { Users } from "./Users";
 
 @Entity()
@@ -10,12 +11,15 @@ export class Registered_times {
     created_at: Date;
 
     @Column()
-    registered_times: Date;
+    time_registered: Date;
 
     @Column()
     user_id: string;
 
-    @ManyToOne(() => Users, user => user.registered_times)
-    @JoinTable({ name: 'user_id'})
+    @OneToMany(() => Notifications, notifications => notifications.users)
+    notifications: Notifications[];
+
+    @OneToMany(() => Users, users => users.registered_times)
     user: Users;
+
 }

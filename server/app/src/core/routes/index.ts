@@ -3,12 +3,13 @@ import { Request, Response, NextFunction } from 'express';
 import userRouter from './user';
 import authRouter from './auth';
 import notificationRouter from './notification';
+import registerRouter from './register';
 
 import rateLimit from 'express-rate-limit';
 import slowDown from 'express-slow-down';
 import { decorateHandler } from '../middlewares';
 
-const routes = [...userRouter, ...authRouter, ...notificationRouter];
+const routes = [...userRouter, ...authRouter, ...notificationRouter, ...registerRouter];
 
 const router = express.Router();
 

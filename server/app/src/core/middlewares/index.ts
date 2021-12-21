@@ -65,3 +65,9 @@ export const performAction = (level: string, fields: string[]) => async (req: Re
     req.user = user
     next()
 }
+
+export const count = (table) => async (req: Request, res: Response, next: NextFunction) => {
+    const [row] = await db(table).count('id')
+    req.count = Number(row.count)
+    next()
+}

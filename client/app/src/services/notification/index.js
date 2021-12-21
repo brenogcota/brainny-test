@@ -1,3 +1,3 @@
 import http from '../../shared/http';
 
-export const getNotifications = async (id) => (await http.get(`/notification/${id}`)).data;
+export const getNotifications = async () => (await http.get(`/notification`)).data;

@@ -1,12 +1,12 @@
 import NotificationController from '../controllers/Notification';
-import { auth } from '../middlewares';
+import { auth, performAction } from '../middlewares';
 
 const routes = [
     {
-        path: '/notification/:id',
-        handler: NotificationController.getAll,
+        path: '/notification',
+        handler: NotificationController.all,
         method: 'get',
-        middlewares: [auth]
+        middlewares: [auth, performAction("roles", ["admin"])]
     }
 ]
 

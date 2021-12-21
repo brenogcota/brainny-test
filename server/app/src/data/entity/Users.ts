@@ -41,7 +41,7 @@ export class Users {
     @Column()
     created_at: Date;
 
-    @OneToMany(() => Notifications, notifications => notifications.subscriber)
+    @OneToMany(() => Notifications, notifications => notifications.users)
     notifications: Notifications[];
 
     @OneToMany(() => Registered_times, times => times.user)

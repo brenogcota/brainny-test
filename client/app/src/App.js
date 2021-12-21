@@ -11,6 +11,7 @@ import { LocaleProvider } from "./store/context/locale";
 
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
+import Registers from "./pages/Registers";
 import SignIn from "./pages/Auth/SignIn";
 import SignUp from "./pages/Auth/SignUp";
 import NotFound from './pages/NotFound';
@@ -35,7 +36,8 @@ function App() {
           <Router>
               <Switch>
                 <PrivateRoute exact path="/" component={Home} />
-                <PrivateRoute exact path="/dash" component={Dashboard} />
+                <PrivateRoute path="/dash" component={Dashboard} />
+                <PrivateRoute path="/registers" component={Registers} />
                 <PrivateRoute path="/settings" component={Settings} />
                 <Route path="/login" component={SignIn} />
                 <Route path="/signup" component={SignUp} />

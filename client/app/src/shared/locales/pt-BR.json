@@ -1,8 +1,9 @@
 {
     "welcome-back": "Bem vindo de volta!",
     "dont-have-an-account-yet": "Ainda não possui uma conta?",
+    "dont-have-an": "Nao possui",
     "already-have-an-account":  "Já possui uma conta?",
-    "register": "Cadastre-se",
+    "register": "Registrar",
     "full-name": "Nome completo",
     "password": "Senha",
     "type-your-password": "Digite sua senha",

@@ -14,7 +14,9 @@ export const Container = styled.div`
 
 export const SidebarItem = styled.div`
     opacity: ${({ active }) => active ? '1' : '.7' };
-    border-left: ${({ active }) => active ? `2px solid ${primary}` : 'none' };;
+    border-left: ${({ active }) => active ? `2px solid ${primary}` : 'none' };
+
+    display: ${({ hidden }) => hidden ? 'none' : 'block' };
 `;
 
 export const LeftContainer = styled.div`

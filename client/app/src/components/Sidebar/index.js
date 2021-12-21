@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
     DashboardOutlined,
@@ -10,7 +10,6 @@ import {
 
 import { useAuth } from '../../store/context/auth';
 
-import Label from '../Label';
 import Notification from '../Notification';
 
 import { Container, 
@@ -41,8 +40,14 @@ function Sidebar() {
 function SideBarLeft() {
     const [activePage, setActivePage] = useState('Dashboard');
     const [isInviteVisible, setIsInviteVisible] = useState(false);
-    const { onLogout } = useAuth();
+    const [isHidden, setIsHidden] = useState(true);
+    const { onLogout, auth } = useAuth();
     const history = useHistory();
+
+    useEffect(() => {
+        const { user } = auth;
+        setIsHidden(!user.roles.includes("admin"))
+    }, [])
 
     return (
         <>
@@ -57,9 +62,12 @@ function SideBarLeft() {
                     </div>
 
                     <SidebarItem onClick={ () => {
-                        setActivePage('Dashboard')
-                        history.push('/dash')
-                    }} active={activePage ==='Dashboard'} className="flex items-center my-3 cursor-pointer w-full px-3">
+                            setActivePage('Dashboard')
+                            history.push('/dash')
+                        }} 
+                        hidden={isHidden}
+                        active={activePage ==='Dashboard'} className="flex items-center my-3 cursor-pointer w-full px-3"
+                    >
                         <DashboardOutlined style={styledIcon} />
                     </SidebarItem>
 
@@ -70,7 +78,11 @@ function SideBarLeft() {
                         <OrderedListOutlined style={styledIcon} />
                     </SidebarItem>
 
-                    <SidebarItem onClick={ () => setActivePage('Notificações')} active={activePage ==='Notificações'} className="flex items-center my-3 cursor-pointer w-full px-3">
+                    <SidebarItem onClick={ () => setActivePage('Notificações')} 
+                                 active={activePage ==='Notificações'} 
+                                 className="flex items-center my-3 cursor-pointer w-full px-3"
+                                 hidden={isHidden}
+                    >
                         <Notification />
                     </SidebarItem>
 

@@ -19,26 +19,24 @@ const { primary } = colors;
 function Notification() {
     const [notifications, setNotifications] = useState([]);
     const [isOpen, setIsOpen] = useState(false)
-    const { id } = getUserLogged()
 
     const { locale } = useStateLocale()
 
     useEffect(() => {
-        listenUserNotifications(id)
+        listenUserNotifications()
     }, []);
 
-    const listenUserNotifications = useCallback(async (id) => {
-        const notifications = await getAllNotifications(id);
+    const listenUserNotifications = useCallback(async () => {
+        const notifications = await getAllNotifications();
         setNotifications(notifications)
-        socket.on(id, (data) => {
-            console.log(notifications, data)
-            setNotifications(orderBy([...notifications, data], ['created_at'], ['desc']))
+        socket.on('new_register', (data) => {
+            setNotifications(orderBy([...notifications, data], ['created_at'], ['asc']))
         })
-    }, [id])
+    }, [])
 
-    const getAllNotifications = async (id) => {
-        let rows = await getNotifications(id);
-        rows = orderBy(rows, ['created_at'], ['desc'])
+    const getAllNotifications = async () => {
+        let rows = await getNotifications();
+        rows = orderBy(rows, ['created_at'], ['asc'])
         return rows;
     }
 

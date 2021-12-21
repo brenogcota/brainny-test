@@ -10,7 +10,7 @@ export const Container = styled.div`
 
   background: ${white};
   box-shadow: 0 0 10px -5px ${shadow};
-  padding: 5px 10px;
+  padding: 10px 15px;
   margin: 1.5rem 0;
   border-radius: .5rem;
   cursor: pointer;

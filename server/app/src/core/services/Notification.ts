@@ -4,8 +4,8 @@ import { sanitize } from "../../utils";
 
 export class NotificationService {
 
-    async all({ user_id }) {
-        let notifications = await db('notifications').join('users', 'notifications.subscriber_id', '=', 'users.id').select('*').where({ user_id });
+    async all() {
+        let notifications = await db('notifications').join('users', 'notifications.user_id', '=', 'users.id').select('*');
         
         notifications = notifications.map(notification => {
             notification.subscriber = {
@@ -23,30 +23,19 @@ export class NotificationService {
         return notifications;
     }
 
-    async save({ user_id, task, project_id, subscriber }) {
-        const [user_subscriber] = await db('users').select('email', 'name', 'id', 'avatar_url', 'avatar_color', 'type').where({ id: subscriber.id });
-        const message = `${user_subscriber.name} signed you on task ${task.title}.`;
-
-        const [notification] = await db('notifications').select('*').where({ user_id, task_id: task.id, project_id, message });
-
-        if(notification) return;
+    async save({ user_id, register }) {
+        const [user] = await db('users').select('name').where({ id: user_id });
+        const message =  `The user ${user.name} registered the point`;
 
         await db('notifications').insert({
             user_id,
-            task_id: task.id,
-            project_id,
-            message,
-            subscriber_id: user_subscriber.id
+            message
         });
 
-        socket.emit(user_id, {
-            user_id,
-            task_id: task.id,
-            project_id,
+        socket.emit('new_register', {
             message,
-            read: false,
-            created_at: new Date(),
-            subscriber: sanitize(user_subscriber)
+            user: sanitize(user),
+            register
         });
     }
 }

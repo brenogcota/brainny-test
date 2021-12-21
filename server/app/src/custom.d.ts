@@ -7,5 +7,6 @@ declare namespace Express {
        image?: any;
        user?: any;
        user_id?: any;
-    }
+       count: number
+   }
  }

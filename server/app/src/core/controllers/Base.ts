@@ -10,20 +10,21 @@ export class BaseController {
     }
 
     all = async (req: Request, res: Response, next: NextFunction) => {
-       //try {
+       try {
             const { order, page: skip, limit: take, ...query} = req.query;
             const response = await this.service.all({ where: query, order, take, skip });
-            return res.status(200).json(sanitize(response));
-        // } catch (error) {
-        //     req.errors = [...req.errors, error];
-        //     next();
-        // }
+            return res.status(200).json({ ...sanitize(response), count: req.count });
+        } catch (error) {
+            req.errors = [...req.errors, error];
+            next();
+        }
     }
 
     one = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const response = await this.service.one(req.params.id);
-            return res.status(200).json(sanitize(response));
+            const { page: skip, limit: take } = req.query;
+            const response = await this.service.one(req.params.id, { skip, take });
+            return res.status(200).json({ ...sanitize(response), count: req.count });
         } catch (error) {
             req.errors = [...req.errors, error];
             next();

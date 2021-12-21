@@ -18,18 +18,6 @@ export class Notifications {
     @Column()
     user_id: string;
 
-    @Column()
-    task_id: string;
-
-    @Column()
-    project_id: string;
-
-    @Column()
-    subscriber_id: string;
-
-    @ManyToOne(() => Users, user => user.notifications)
-    subscriber: Users;
-
     @ManyToMany(() => Users)
     @JoinTable({ 
         name: 'notifications_users',

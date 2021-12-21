@@ -8,10 +8,9 @@ class NotificationController extends BaseController {
     }
 
     async getAll(req: Request, res: Response) {
-        const { id } = req.params;
         const service = new NotificationService();
 
-        const notifications = await service.all({ user_id: id });
+        const notifications = await service.all();
         return res.status(200).json(notifications);
     } 
 }

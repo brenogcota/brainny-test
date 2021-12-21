@@ -7,4 +7,10 @@ export class RegisterService extends BaseService {
     constructor() {
         super(RegisterRepository);
     }
+
+    async all(options?) {
+        
+        return super.all({ relations: ['user'], ...options })
+    }
+
 }

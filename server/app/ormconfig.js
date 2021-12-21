@@ -14,7 +14,7 @@ module.exports = {
    "password": process.env.PASS,
    "database": process.env.DATABASE,
    "synchronize": synchronize,
-   "logging": false,
+   "logging": true,
    "entities": [
       `${path}/data/entity/**/*.${extension}`
    ],

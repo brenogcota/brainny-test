@@ -28,7 +28,6 @@ export class Notifications {
     subscriber_id: string;
 
     @ManyToOne(() => Users, user => user.notifications)
-    @JoinTable({ name: 'subscriber_id'})
     subscriber: Users;
 
     @ManyToMany(() => Users)

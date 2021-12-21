@@ -19,7 +19,8 @@ export class Registered_times {
     @OneToMany(() => Notifications, notifications => notifications.users)
     notifications: Notifications[];
 
-    @OneToMany(() => Users, users => users.registered_times)
+    @ManyToOne(() => Users, users => users.registered_times)
+    @JoinColumn({ name: 'user_id'})
     user: Users;
 
 }

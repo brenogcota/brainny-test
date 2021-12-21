@@ -32,7 +32,7 @@ function Dashboard() {
   const loadRegisters = async () => {
     const { count, ...registers } = await getRegisters(limit, page)
     setCount(count)
-    setRegisters(orderBy(registers, ['created_at'], ['desc']))
+    setRegisters(orderBy(registers, ['time_registered'], ['desc']))
   }
   
   return (

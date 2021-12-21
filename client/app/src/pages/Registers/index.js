@@ -16,6 +16,7 @@ function Registers() {
   const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(5);
   const [count, setCount] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
   const { locale } = useStateLocale();
 
   useEffect(() => {
@@ -30,7 +31,7 @@ function Registers() {
     const { id } = getUserLogged()
     const { count, ...registers } = await getUserRegisters(id, limit, page)
     setCount(count)
-    setRegisters(orderBy(registers, ['created_at'], ['desc']))
+    setRegisters(orderBy(registers, ['time_registered'], ['desc']))
   }
   
   return (
@@ -39,7 +40,7 @@ function Registers() {
 
         <Main>
 
-          <div className="my-4 relative right-0">
+          <div onClick={() => setIsOpen(true)} className="my-4 relative right-0">
             <Button type="primary"><span className='text-sm'>{locale["register"]}</span></Button>
           </div>
 
@@ -54,7 +55,7 @@ function Registers() {
           </div>
         </Main>
 
-        <Menu></Menu>
+        <Menu isOpen={isOpen} setIsOpen={setIsOpen} />
     </Container>
   );
 }

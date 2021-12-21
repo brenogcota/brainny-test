@@ -40,13 +40,13 @@ function Sidebar() {
 function SideBarLeft() {
     const [activePage, setActivePage] = useState('Dashboard');
     const [isInviteVisible, setIsInviteVisible] = useState(false);
-    const [isHidden, setIsHidden] = useState(true);
+    const [isAdmin, setIsAdmin] = useState(true);
     const { onLogout, auth } = useAuth();
     const history = useHistory();
 
     useEffect(() => {
         const { user } = auth;
-        setIsHidden(!user.roles.includes("admin"))
+        setIsAdmin(!user.roles.includes("admin"))
     }, [])
 
     return (
@@ -65,31 +65,39 @@ function SideBarLeft() {
                             setActivePage('Dashboard')
                             history.push('/dash')
                         }} 
-                        hidden={isHidden}
+                        hidden={isAdmin}
                         active={activePage ==='Dashboard'} className="flex items-center my-3 cursor-pointer w-full px-3"
                     >
                         <DashboardOutlined style={styledIcon} />
                     </SidebarItem>
 
                     <SidebarItem onClick={ () => {
-                        setActivePage('Times')
-                        history.push('/registers')
-                    }} active={activePage ==='Times'} className="flex items-center my-3 cursor-pointer w-full px-3">
+                            setActivePage('Times')
+                            history.push('/registers')
+                        }} 
+                        active={activePage ==='Times'} 
+                        className="flex items-center my-3 cursor-pointer w-full px-3"
+                        hidden={!isAdmin}
+                    >
                         <OrderedListOutlined style={styledIcon} />
                     </SidebarItem>
 
                     <SidebarItem onClick={ () => setActivePage('Notificações')} 
                                  active={activePage ==='Notificações'} 
                                  className="flex items-center my-3 cursor-pointer w-full px-3"
-                                 hidden={isHidden}
+                                 hidden={isAdmin}
                     >
                         <Notification />
                     </SidebarItem>
 
                     <SidebarItem onClick={ () => {
-                        setActivePage('Convidar')
-                        setIsInviteVisible(true)
-                    }} active={activePage ==='Convidar'} className="flex items-center my-3 cursor-pointer w-full px-3">
+                            setActivePage('Convidar')
+                            setIsInviteVisible(true)
+                        }} 
+                        active={activePage ==='Convidar'} 
+                        className="flex items-center my-3 cursor-pointer w-full px-3"
+                        hidden={isAdmin}
+                    >
                         <UsergroupAddOutlined style={styledIcon}/>
                     </SidebarItem>
 

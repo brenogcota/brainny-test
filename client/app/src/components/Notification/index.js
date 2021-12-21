@@ -30,13 +30,13 @@ function Notification() {
         const notifications = await getAllNotifications();
         setNotifications(notifications)
         socket.on('new_register', (data) => {
-            setNotifications(orderBy([...notifications, data], ['created_at'], ['asc']))
+            setNotifications(orderBy([...notifications, data], ['time_registered'], ['asc']))
         })
     }, [])
 
     const getAllNotifications = async () => {
         let rows = await getNotifications();
-        rows = orderBy(rows, ['created_at'], ['asc'])
+        rows = orderBy(rows, ['time_registered'], ['asc'])
         return rows;
     }
 
